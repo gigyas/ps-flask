@@ -8,13 +8,21 @@ Add URL
 <section>
     <h1>Add URL</h1>
     <form action="" method="post">
-        <p>
-            Please enter your bookmark here:
-            <input type="text" name="url">
-        </p>
-        <p>
-            <button type="submit">Submit</button>
-        </p>
+        {{ form.hidden_tag() }}
+        <table>
+            <tr>
+                <td>Please enter your bookmark here:</td>
+                <td>{{ form.url(size=50 )}}</td>
+            </tr>
+            <tr>
+                <td>Add an optional description:</td>
+                <td>{{ form.description(size=50) }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit">Submit</button></td>
+            </tr>
+        </table>
     </form>
 </section>
 {% endblock %}
