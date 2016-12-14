@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "form_macros.html" import render_field %}
 
 {% block title %}
 Add URL
@@ -7,17 +8,11 @@ Add URL
 {% block content %}
 <section>
     <h1>Add URL</h1>
-    <form action="" method="post">
+    <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <table>
-            <tr>
-                <td>Please enter your bookmark here:</td>
-                <td>{{ form.url(size=50 )}}</td>
-            </tr>
-            <tr>
-                <td>Add an optional description:</td>
-                <td>{{ form.description(size=50) }}</td>
-            </tr>
+            {{ render_field(form.url, size=50) }}
+            {{ render_field(form.description, size=50) }}
             <tr>
                 <td></td>
                 <td><button type="submit">Submit</button></td>

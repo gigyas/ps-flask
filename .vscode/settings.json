@@ -9,5 +9,5 @@
         "**/.eggs": true,
         "**/*egg-info": true
     },
-    "python.pythonPath": "d:/src/pluralsight/flasky/.tox/py27/Scripts/python.exe"
+    "python.pythonPath": "${workspaceRoot}/.tox/py27/Scripts/python.exe"
 }
