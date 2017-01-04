@@ -1,6 +1,7 @@
 pbr>= 1.6
 
 Flask
-flask-wtf
-flask-sqlalchemy
+flask-login
 flask-script
+flask-sqlalchemy
+flask-wtf

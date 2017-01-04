@@ -3,3 +3,6 @@
 **/*egg-info
 **/*.pyc
 **/.pylint.d
+AUTHORS
+CHANGELOG
+**/*.db

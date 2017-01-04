@@ -1,13 +1,15 @@
 from flasky import app, db
 from flasky.models import User
 
-from flask.ext.script import Manager, prompt_bool
+from flask_script import Manager, prompt_bool
 
 manager = Manager(app)
 
 @manager.command
 def initdb():
     db.create_all()
+    db.session.add(User(username='matt', email='gigyas@gmail.com'))
+    db.session.commit()
     print('Initialized the database')
 
 @manager.command

@@ -1,2 +1,3 @@
 [MESSAGES CONTROL]
-disable=missing-final-newline
+disable=missing-final-newline,C0325
+good-names=id
