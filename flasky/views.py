@@ -1,7 +1,7 @@
 from __future__ import print_function
 import sys
 
-from flask import render_template, url_for, request, redirect, flash
+from flask import render_template, url_for, request, redirect, flash, abort
 from flask_login import login_required, login_user, logout_user, current_user
 
 from flasky import app, db, login_manager
@@ -29,7 +29,21 @@ def add():
         db.session.commit()
         flash('Stored bookmark: {}'.format(url))
         return redirect(url_for('index'))
-    return render_template('add.html', form=form)
+    return render_template('bookmark_form.html', form=form, title='Add Bookmark')
+
+@app.route('/edit/<int:bookmark_id>', methods=['GET', 'POST'])
+@login_required
+def edit_bookmark(bookmark_id):
+    bookmark = Bookmark.query.get_or_404(bookmark_id)
+    if current_user != bookmark.user:
+        abort(403)
+    form = BookmarkForm(obj=bookmark)
+    if form.validate_on_submit():
+        form.populate_obj(bookmark)
+        db.session.commit()
+        flash('Stored \'{}\''.format(bookmark.description))
+        return redirect(url_for('user', username=current_user.username))
+    return render_template('bookmark_form.html', form=form, title='Edit Bookmark')
 
 @app.route('/user/<username>')
 def user(username):

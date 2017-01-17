@@ -2,6 +2,7 @@ pbr>= 1.6
 
 Flask
 flask-login
+flask-moment
 flask-script
 flask-sqlalchemy
 flask-wtf

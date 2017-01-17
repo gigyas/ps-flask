@@ -3,6 +3,7 @@ import os
 import pbr.version
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_moment import Moment
 from flask_login import LoginManager
 
 __version__ = pbr.version.VersionInfo(
@@ -17,10 +18,14 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'fl
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
+# Configure authentication
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'login'
 login_manager.init_app(app)
+
+# For displaying timestamps
+moment = Moment(app)
 
 import models
 import views
